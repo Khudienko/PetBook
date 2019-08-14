@@ -1,0 +1,13 @@
+FATAL ERROR 2019/08/12 02:59:34 logger.go:28: dial tcp [::1]:5434: connectex: No connection could be made because the target machine actively refused it. Error occurred while trying to ping server.
+
+FATAL ERROR 2019/08/12 02:59:50 logger.go:28: dial tcp [::1]:5434: connectex: No connection could be made because the target machine actively refused it. Error occurred while trying to ping server.
+
+FATAL ERROR 2019/08/12 03:00:35 logger.go:28: Unable to create migration plan because of 20190807090506-add_topics-users_FK.sql: unknown migration in database Error occurred while trying to exec migrations.
+
+FATAL ERROR 2019/08/12 23:58:35 logger.go:28: Error while parsing 20190812235339-create.sql: Error parsing migration (20190812235339-create.sql): ERROR: The last statement must be ended by a semicolon or '-- +migrate StatementEnd' marker.
+			See https://github.com/rubenv/sql-migrate for details. Error occurred while trying to exec migrations.
+
+ERROR 2019/08/14 02:55:28 logger.go:22: html/template: "layout" is undefined Error occurred while trying to generate html view.
+
+FATAL ERROR 2019/08/14 16:37:24 logger.go:28: open .env: The system cannot find the file specified. Error occurred while trying to open .env file.
+
