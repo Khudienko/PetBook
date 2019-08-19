@@ -49,7 +49,7 @@ func (p *PetStore) UpdatePet(pet *Pet)  {
 func (p *PetStore) GetPetEnums() []string {
 	var petType []string
 	var ptype string
-	rows,err:=p.DB.Queryx("select unnest(enum_range(NULL::kind_of_animal))from pets")
+	rows,err:=p.DB.Queryx("select unnest(enum_range(NULL::kind_of_animal))::text")
 	if err != nil {
 		fmt.Println("Error in getting enums")
 	}
