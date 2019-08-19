@@ -13,14 +13,16 @@
             <h1>Pet Registration</h1>
             <input type="text" name="nickname" placeholder="Pet nickname"/>
             <label>Animal type</label>
+
             <select name="pet-type">
-                <option name="cat">cat</option>
-                <option name="dog">dog</option>
-                <option name="fish">fish</option>
+            {{range .}}
+                <option >{{.}}</option>
+            {{end}}
             </select>
+
             <input type="text" name="breed" placeholder="Pet breed"/>
-            <input type="text" name="age" placeholder="Pet age"/>
-            <input type="text" name="weight" placeholder="Pet weight"/>
+            <input type="number"  name="age" placeholder="Pet age"/>
+            <input type="number" step="0.2" name="weight" placeholder="Pet weight"/>
             <label>Pet gender</label>
             <select name="gender" >
                 <option name="male">male</option>

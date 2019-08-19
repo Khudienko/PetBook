@@ -67,8 +67,9 @@ func main() {
 	subrouter.HandleFunc("/",controller.GetBlogHandler)
 	subrouter.HandleFunc("/process",controller.CreateBlogHandler)
 	subrouter.HandleFunc("/delete",controller.DeleteBlogHandler)
-	router.HandleFunc("/upload",controllers.UploadFile)
-
+	subrouter.HandleFunc("/upload",controllers.UploadFile)
+	subrouter.HandleFunc("/edit",controller.EditHandler).Methods("GET")
+	subrouter.HandleFunc("/edit",controller.UpdateHandler).Methods("POST")
 
 
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/",
@@ -76,7 +77,6 @@ func main() {
 
 	loggedRouter := handlers.LoggingHandler(os.Stdout, router)
 
-	// Is it proper way to handle ListenAndServe() error?
 	if err:= http.ListenAndServe(":8080", loggedRouter); err !=nil {
 		logger.FatalError(err, "Error occurred, while trying to listen and serve a server")
 	}
