@@ -1,11 +1,15 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/dpgolang/PetBook/pkg/models"
 	"github.com/dpgolang/PetBook/pkg/view"
 	"github.com/gorilla/context"
 	"log"
 	"net/http"
+	"os"
+	"path/filepath"
+	"strings"
 )
 
 type Editstr struct {
@@ -72,3 +76,58 @@ func (c *Controller) UpdateHandler(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/mypage", 301)
 }
+
+func (c *Controller) GetImgHandler(w http.ResponseWriter, r *http.Request) {
+	adr:=GetImg()
+	view.GenerateHTML(w,adr,"getimg")
+}
+//
+func GetImg() []string {
+	var files []string
+
+	root := "./web/static/"
+	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
+		if filepath.Ext(path) != ".jpg" && filepath.Ext(path) != ".png" {
+			return nil
+		}
+		files = append(files, path)
+		return nil
+	})
+	if err != nil {
+		panic(err)
+	}
+	for _, file := range files {
+		fmt.Println(file)
+	}
+
+	//fmt.Println(files[1:])
+	for i,file:=range files{
+		file=files[i]
+		v:=strings.Replace(file,"\\","/",100)
+		files[i]=v
+	}
+	for i,file:=range files{
+		file=files[i]
+		v:=strings.Replace(file,"web","..",100)
+		files[i]=v
+	}
+	//return files[1:]
+	return files
+}
+
+
+//func GetImg()[]os.FileInfo  {
+//	files, err := ioutil.ReadDir("./web/storage/")
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//
+//	for _, file := range files {
+//
+//		fmt.Println(file.IsDir())
+//		fmt.Println(file.Sys())
+//
+//	}
+//
+//	return files
+//}

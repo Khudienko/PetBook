@@ -72,6 +72,9 @@ func (c *Controller) HandleChatConnection() http.HandlerFunc {
 			// Send the newly received message to the broadcast channel
 			broadcast <- msg
 		}
+		view.GenerateHTML(w, "MYPAGE", "navbar")
+		view.GenerateHTML(w, client, "chat")
+		view.GenerateHTML(w, nil, "footer")
 	}
 }
 

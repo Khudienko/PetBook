@@ -17,7 +17,8 @@ import (
 )
 
 func main() {
-
+	//fmt.Println(controllers.GetImg())
+	controllers.GetImg()
 	db := driver.ConnectDB()
 	err := gomigrations.Migrate(db)
 	if err != nil {
@@ -78,6 +79,9 @@ func main() {
 	subrouter.HandleFunc("/edit", controller.EditHandler).Methods("GET")
 	subrouter.HandleFunc("/edit", controller.UpdateHandler).Methods("POST")
 
+
+	subrouter.HandleFunc("/getimg",controller.GetImgHandler).Methods("Get")
+
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/",
 		http.FileServer(http.Dir("./web/static/"))))
 
@@ -86,4 +90,6 @@ func main() {
 	if err := http.ListenAndServe(":8080", loggedRouter); err != nil {
 		logger.FatalError(err, "Error occurred, while trying to listen and serve a server")
 	}
+
+
 }
